@@ -1,4 +1,5 @@
 import { useState } from "react";
+;
 import { AuthSiginwithEmailandPassword,createUserDocumentFromAuth,signInwithGooglePopup} from '../../Utils/Firebase/Firebase.utils'
 import InputForm from "../input-form/input-form.component";
 import './Siginform.styles.scss'
@@ -14,6 +15,9 @@ const Signinform = () => {
   const {  email, password } = formFields;
   console.log(formFields);
 
+
+
+
   const SiginwithGoogle = async () => {
     const { user } = await signInwithGooglePopup();
     await createUserDocumentFromAuth(user);
@@ -26,8 +30,8 @@ const Signinform = () => {
     event.preventDefault();
   
     try {
-      const response = await  AuthSiginwithEmailandPassword(email,password);
-      alert("You have sucessfully signed in",response);
+      const {user} = await  AuthSiginwithEmailandPassword(email,password);
+      alert("You have sucessfully signed in",user);
       resetFormFields();
   
     }catch(error){

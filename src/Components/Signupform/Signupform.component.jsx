@@ -2,6 +2,7 @@ import { useState } from "react";
 import {AuthCreateUserwithEmailandPassword,createUserDocumentFromAuth} from '../../Utils/Firebase/Firebase.utils'
 import InputForm from "../input-form/input-form.component";
 import './Signupform.styles.scss'
+
 import Button from "../button/Button.component";
 const Signupform = () => {
   const defaultFormFields = {
@@ -10,10 +11,12 @@ const Signupform = () => {
     password: '',
     confirmPassword: ''
   };
+ 
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
   console.log(formFields);
+ ;
 
   const resetFormFields =()=>{
     setFormFields(defaultFormFields);
@@ -28,16 +31,16 @@ const Signupform = () => {
   
     try {
       // Create user with email and password
-      const userCredential = await AuthCreateUserwithEmailandPassword(email, password);
-      const user = userCredential.user;
+      const {user} = await AuthCreateUserwithEmailandPassword(email, password);
+      
       console.log("User created successfully:", user);
       alert("User Created Successfully");
       resetFormFields();
+      
   
       try {
         await createUserDocumentFromAuth(user, { displayName });
         alert("User data added to the user's table");
-        ;
       } catch (error) {
         alert("Unable to add User Data: " + error.message);
       }
