@@ -35,7 +35,7 @@ googleProvider.setCustomParameters({
 
 
 
-export const signInwithGooglePopup = () => signInWithPopup(auth, googleProvider)
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const signInwithGoogleRedirect = () => signInWithRedirect(auth, googleProvider)
 export const auth = getAuth();
 export const db = getFirestore();
@@ -97,12 +97,12 @@ export const createUserDocumentFromAuth = async (
     }
     return userDocRef
 }
-export const AuthCreateUserwithEmailandPassword = async (email, password) => {
+export const AuthCreateUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
 
     return await createUserWithEmailAndPassword(auth, email, password)
 }
-export const AuthSiginwithEmailandPassword = async (email, password) => {
+export const AuthSiginWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
 
     return await signInWithEmailAndPassword(auth, email, password)

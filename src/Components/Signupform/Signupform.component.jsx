@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {AuthCreateUserwithEmailandPassword,createUserDocumentFromAuth} from '../../Utils/Firebase/Firebase.utils'
+import {AuthCreateUserWithEmailAndPassword,createUserDocumentFromAuth} from '../../Utils/Firebase/Firebase.utils'
 import InputForm from "../input-form/input-form.component";
 
 import Button from "../button/Button.component";
@@ -31,7 +31,7 @@ const Signupform = () => {
   
     try {
       // Create user with email and password
-      const {user} = await AuthCreateUserwithEmailandPassword(email, password);
+      const {user} = await AuthCreateUserWithEmailAndPassword(email, password);
       
       console.log("User created successfully:", user);
       alert("User Created Successfully");

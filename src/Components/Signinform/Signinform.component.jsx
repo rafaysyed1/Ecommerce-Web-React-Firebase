@@ -1,8 +1,7 @@
 import { useState } from "react";
-;
-import { AuthSiginwithEmailandPassword,createUserDocumentFromAuth,signInwithGooglePopup} from '../../Utils/Firebase/Firebase.utils'
+import { AuthSiginWithEmailAndPassword, createUserDocumentFromAuth, signInWithGooglePopup } from '../../Utils/Firebase/Firebase.utils';
 import InputForm from "../input-form/input-form.component";
-import {SignIpContainer,SigInButtonsContainer} from'./Siginform.styles.jsx'
+import { SignIpContainer, SigInButtonsContainer } from './Siginform.styles.jsx';
 import Button, { buttonTypeClasses } from "../button/Button.component";
 const Signinform = () => {
   const defaultFormFields = {
@@ -19,7 +18,7 @@ const Signinform = () => {
 
 
   const SiginwithGoogle = async () => {
-    const { user } = await signInwithGooglePopup();
+    const { user } = await signInWithGooglePopup();
     await createUserDocumentFromAuth(user);
 };
 
@@ -30,7 +29,7 @@ const Signinform = () => {
     event.preventDefault();
   
     try {
-      const {user} = await  AuthSiginwithEmailandPassword(email,password);
+      const {user} = await  AuthSiginWithEmailAndPassword(email,password);
       alert("You have sucessfully signed in",user);
       resetFormFields();
   
