@@ -2,8 +2,8 @@ import { useState } from "react";
 ;
 import { AuthSiginwithEmailandPassword,createUserDocumentFromAuth,signInwithGooglePopup} from '../../Utils/Firebase/Firebase.utils'
 import InputForm from "../input-form/input-form.component";
-import './Siginform.styles.scss'
-import Button from "../button/Button.component";
+import {SignIpContainer,SigInButtonsContainer} from'./Siginform.styles.jsx'
+import Button, { buttonTypeClasses } from "../button/Button.component";
 const Signinform = () => {
   const defaultFormFields = {
     email: '',
@@ -54,7 +54,7 @@ const Signinform = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignIpContainer>
       <h1>Already have an account?</h1>
       <span>Sign in with your email and password</span>
       <form onSubmit={(e) => {handleSubmit(e)}}>
@@ -76,13 +76,13 @@ const Signinform = () => {
         value = {password}
         
          />
-        <div className="buttons-container">
+        <SigInButtonsContainer>
         <Button  type ="submit" onClick = {handleSubmit} >Sign In </Button>
-        <Button type = "button" buttonType={'google'}  onClick = {SiginwithGoogle} >Google Sigin </Button>     
-        </div>
+        <Button type = "button" buttonType={buttonTypeClasses.google}  onClick = {SiginwithGoogle} >Google Sigin </Button>     
+        </SigInButtonsContainer>
        
       </form>
-    </div>
+    </SignIpContainer>
   );
 };
 

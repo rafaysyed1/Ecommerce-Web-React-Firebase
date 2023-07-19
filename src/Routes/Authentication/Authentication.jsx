@@ -1,24 +1,23 @@
-
 import Signupform from '../../Components/Signupform/Signupform.component';
 import Signinform from '../../Components/Signinform/Signinform.component';
-import './Authentication.styles.scss'
-import {
+// import {
  
-    signInwithGooglePopup,
+//     signInwithGooglePopup,
    
-    createUserDocumentFromAuth
-} from '../../Utils/Firebase/Firebase.utils';
+//     createUserDocumentFromAuth
+// } from '../../Utils/Firebase/Firebase.utils';
+import { AuthenticationContainer } from './Authentication.styles';
 
 const Authentication = () => {
 
    
 
     return (
-        <div className='authentication-container'>
+        <AuthenticationContainer>
            <Signinform />
             <Signupform />
            
-        </div>
+        </AuthenticationContainer>
     );
     }
 

@@ -1,10 +1,10 @@
-import Categories from '../../Components/Categories/Categories';
+import Directory from '../../Components/Directory/Directory';
 
 const Home = () => {
 
   return (
    <div>
-    <Categories />
+    <Directory />
    </div>
   );
 }

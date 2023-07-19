@@ -1,6 +1,8 @@
-import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg'
 import { CartContext } from '../../contexts/cart-context'
-import './Cart-Icon.styles.scss'
+import {CartIconContainer,
+    ShoppingIcon,
+    CartItemCount,
+} from './Cart-Icon.styles.jsx'
 import { useContext } from 'react'
 
 const CartIcon = () => {
@@ -10,10 +12,10 @@ const CartIcon = () => {
         setIsCartOpen(!isCartOpen)
     }
     return (
-        <div className='cart-icon-container'>
+        <CartIconContainer>
             <ShoppingIcon className='cart-icon' onClick={ToggleCartOpen} />
-            <span className='item-count'>{cartItemCount}</span>
-        </div>
+            <CartItemCount>{cartItemCount}</CartItemCount>
+        </CartIconContainer>
     )
 }
 
