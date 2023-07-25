@@ -53,7 +53,7 @@ export const addCollectionandDocument = async (collectionKey, objectsToAdd) => {
     alert("Categories are succesfully added to Firestore Collection")
 }
 
-export const getCollectionAndDoc = async () => {
+export const categorygetCollectionAndDoc = async () => {
     const collectionRef = collection(db, "productCategories")
 
     //Using query function and passing collection to tell on which collection to do query
