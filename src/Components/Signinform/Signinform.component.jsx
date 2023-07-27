@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { AuthSiginWithEmailAndPassword, createUserDocumentFromAuth, signInWithGooglePopup } from '../../Utils/Firebase/Firebase.utils';
 import InputForm from "../input-form/input-form.component";
 import { SignIpContainer, SigInButtonsContainer } from './Siginform.styles.jsx';
 import Button, { buttonTypeClasses } from "../button/Button.component";
+import { useDispatch } from "react-redux";
+import { googleSignInStart,emailSignInStart } from "../../store/user/user.action";
 const Signinform = () => {
+  const dispatch = useDispatch();
   const defaultFormFields = {
     email: '',
     password: '',
@@ -18,8 +20,7 @@ const Signinform = () => {
 
 
   const SiginwithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+   dispatch(googleSignInStart());
 };
 
   const resetFormFields =()=>{
@@ -29,23 +30,24 @@ const Signinform = () => {
     event.preventDefault();
   
     try {
-      const {user} = await  AuthSiginWithEmailAndPassword(email,password);
-      alert("You have sucessfully signed in",user);
+      dispatch(emailSignInStart( email, password ));
+      console.log(email, password); 
       resetFormFields();
   
-    }catch(error){
-     switch(error.code){
-        case  'auth/wrongpassword':
-        alert("Enter the Correct Password")
-        break;
-        case './auth/user-not-found':
-        alert("Enter the right credientials")
-        break;
-        default: console.log(error.message)
-     }
-   
+    } catch (error) {
+      switch(error.code){
+        case  'auth/wrong-password':
+          alert("Enter the Correct Password");
+          break;
+        case 'auth/user-not-found':
+          alert("Enter the right credentials");
+          break;
+        default: 
+          console.log(error.message);
+      }
     }
-}
+  }
+  
   
   const handleChange = (event) => {
     const { name, value } = event.target;

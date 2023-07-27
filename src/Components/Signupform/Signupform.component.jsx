@@ -1,10 +1,11 @@
 import { useState } from "react";
-import {AuthCreateUserWithEmailAndPassword,createUserDocumentFromAuth} from '../../Utils/Firebase/Firebase.utils'
 import InputForm from "../input-form/input-form.component";
-
 import Button from "../button/Button.component";
 import { SignUpContainer } from "./Signupform.styles";
+import { useDispatch } from "react-redux";
+import { SignUpStart } from "../../store/user/user.action";
 const Signupform = () => {
+  const dispatch = useDispatch();
   const defaultFormFields = {
     displayName: '',
     email: '',
@@ -30,20 +31,11 @@ const Signupform = () => {
     }
   
     try {
-      // Create user with email and password
-      const {user} = await AuthCreateUserWithEmailAndPassword(email, password);
-      
-      console.log("User created successfully:", user);
+      dispatch(SignUpStart(email,password,displayName));
+    
       alert("User Created Successfully");
       resetFormFields();
       
-  
-      try {
-        await createUserDocumentFromAuth(user, { displayName });
-        alert("User data added to the user's table");
-      } catch (error) {
-        alert("Unable to add User Data: " + error.message);
-      }
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create multiple users with the same email");
