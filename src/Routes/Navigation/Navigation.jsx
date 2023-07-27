@@ -1,9 +1,7 @@
-import { Fragment,  useContext } from "react"
+import { Fragment} from "react"
 import { Outlet} from "react-router-dom"
 import { ReactComponent as CrownLogo } from '../../assets/crown.svg'
-
-import { signOutUser } from '../../Utils/Firebase/Firebase.utils'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import CartIcon from "../../Components/Cart-Icon/Cart-Icon.component"
 import CartDropDown from "../../Components/Cart-DropDown/CartDropDown.component"
@@ -16,11 +14,15 @@ import {
 } from './Navigation.styles.jsx'
 import { selectCurrentUser } from "../../store/user/user.selector"
 import { selectIsCartOpen } from "../../store/cart/cart.selector"
+import { SignOutStart } from "../../store/user/user.action"
 
 const Navigation = () => {
+    const dispatch = useDispatch();
+
+   
    const currentUser =  useSelector(selectCurrentUser);   
    console.log("User after the state changed is : ",currentUser)
-    
+   const signOutUser = ()=> dispatch(SignOutStart());
    const isCartOpen = useSelector(selectIsCartOpen)
     return (
         <Fragment>
